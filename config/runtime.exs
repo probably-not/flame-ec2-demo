@@ -9,11 +9,4 @@ import Config
 
 if config_env() == :prod do
   config :flame, :backend, FlameEC2
-
-  config :flame, FlameEC2,
-    auto_configure: true,
-    key_name: System.get_env("AWS_SSH_KEY_NAME"),
-    s3_bundle_url:
-      System.get_env("RELEASE_BUNDLE_LOCATION") ||
-        raise("environment variable RELEASE_BUNDLE_LOCATION is missing.")
 end
