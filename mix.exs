@@ -26,7 +26,7 @@ defmodule FlameEC2Demo.MixProject do
   defp deps do
     [
       {:flame, "~> 0.5.0"},
-      {:flame_ec2, "~> 0.0.1-rc-8"},
+      {:flame_ec2, "~> 0.0.1-rc-9"},
       {:jason, "~> 1.2"}
     ]
   end
