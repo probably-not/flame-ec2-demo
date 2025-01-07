@@ -1,0 +1,37 @@
+name: "Build Release Artifact"
+
+on:
+  push:
+    branches-ignore:
+      - "**"
+    tags:
+      - v*
+
+concurrency:
+  group: release-${{ github.event.repository.name }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-24.04
+    env:
+      MIX_ENV: prod
+    steps:
+      - name: Git clone the repository
+        uses: actions/checkout@v4
+      - name: Set up Elixir
+        uses: erlef/setup-beam@v1
+        with:
+          version-file: .tool-versions
+          version-type: strict
+      - name: Install dependencies
+        run: mix deps.get
+      - name: Compile
+        run: mix compile
+      - name: Build Release
+        run: mix release --overwrite
+      - name: Archive release
+        uses: actions/upload-artifact@v4
+        with:
+          name: release
+          path: _build/prod/flame_ec2_demo-*.tar.gz

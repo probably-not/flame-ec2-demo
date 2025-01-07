@@ -1,13 +1,16 @@
 defmodule FlameEC2Demo.MixProject do
   use Mix.Project
 
+  @version "0.1.0"
+
   def project do
     [
       app: :flame_ec2_demo,
-      version: "0.1.0",
+      version: @version,
       elixir: "~> 1.18",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      releases: releases(@version)
     ]
   end
 
@@ -25,6 +28,19 @@ defmodule FlameEC2Demo.MixProject do
       {:flame, "~> 0.5.0"},
       {:flame_ec2, "~> 0.0.1-rc-7"},
       {:jason, "~> 1.2"}
+    ]
+  end
+
+  defp releases(version) do
+    [
+      flame_ec2_demo: [
+        version: version,
+        include_executables_for: [:unix],
+        steps: [:assemble, :tar],
+        applications: [
+          flame_ec2_demo: :permanent
+        ]
+      ]
     ]
   end
 end
