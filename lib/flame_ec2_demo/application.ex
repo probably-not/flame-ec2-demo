@@ -15,10 +15,7 @@ defmodule FlameEC2Demo.Application do
         max: 10,
         max_concurrency: 5,
         idle_shutdown_after: 30_000,
-        log: :debug,
-        auto_configure: true,
-        key_name: System.get_env("AWS_SSH_KEY_NAME"),
-        s3_bundle_url: System.get_env("RELEASE_BUNDLE_LOCATION")
+        log: :debug
       }
     ]
 
