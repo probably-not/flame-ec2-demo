@@ -14,6 +14,8 @@ defmodule FlameEC2Demo.Application do
         min: 0,
         max: 10,
         max_concurrency: 5,
+        timeout: 150_000,
+        boot_timeout: 120_000,
         idle_shutdown_after: 30_000,
         log: :debug
       }

@@ -3,7 +3,6 @@ defmodule FlameEC2Demo do
 
   def run_example_task do
     FLAME.call(FlameEC2Demo.Pool, fn ->
-      Process.sleep(10_000)
       System.cmd("hostname", [])
     end)
   end
