@@ -31,7 +31,7 @@ jobs:
       - name: Build Release
         run: mix release --overwrite
       - name: Archive release
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: release.tar.gz
           path: _build/prod/flame_ec2_demo-*.tar.gz
